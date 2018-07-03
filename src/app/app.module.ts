@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { CurrencyListComponent } from './components/currency-list/currency-list.component';
 
 import { CryptocurrencyService } from './services/cryptocurrency.service';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrencyListComponent
+    CurrencyListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
