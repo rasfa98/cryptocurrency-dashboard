@@ -6,7 +6,7 @@ import { WelcomeMessageComponent } from './components/welcome-message/welcome-me
 const routes: Routes = [
   { path: '', redirectTo '/welcome', pathMatch: 'full' }
   { path: 'welcome', component: WelcomeMessageComponent  },
-  { path: ':currency', component: DetailedCurrencyComponent }
+  { path: ':id', component: DetailedCurrencyComponent }
 ];
 
 @NgModule({

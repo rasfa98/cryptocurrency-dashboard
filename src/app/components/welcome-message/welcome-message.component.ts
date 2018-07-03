@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-welcome-message',
@@ -8,13 +7,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class WelcomeMessageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        console.log(this.router.url);
-      }
-    });
-  }
+  ngOnInit() { }
 }
