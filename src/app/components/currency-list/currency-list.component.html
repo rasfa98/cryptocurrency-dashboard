@@ -1,5 +1,3 @@
-<ul>
-  <li *ngFor="let currency of currencies">
-    <a [routerLink]="currency.name">{{ currency.name }}</a>
-  </li>
-</ul>
+<div class="collection">
+  <a *ngFor="let currency of currencies" [routerLink]="currency.name" class="collection-item">{{ currency.name }}</a>
+</div>
