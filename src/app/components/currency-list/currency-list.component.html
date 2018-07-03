@@ -1,3 +1,5 @@
-<p>
-  currency-list works!
-</p>
+<ul>
+  <li *ngFor="let currency of currencies">
+    <a [routerLink]="currency.name">{{ currency.name }}</a>
+  </li>
+</ul>
