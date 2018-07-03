@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CryptocurrencyService } from '../../services/cryptocurrency.service';
 
 @Component({
   selector: 'app-detailed-currency',
@@ -8,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class DetailedCurrencyComponent implements OnInit {
   currency;
 
-  constructor() { }
+  constructor(private crypto: CryptocurrencyService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.crypto.detailedCurrency.subscribe(details => {
+      if (details) {
+        this.currency = details.data;
+        console.log(details.data.quotes.EUR.price);
+      }
+    });
+  }
 
 }

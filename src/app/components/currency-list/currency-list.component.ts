@@ -17,7 +17,13 @@ export class CurrencyListComponent implements OnInit {
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        console.log(this.router.url);
+        const param = this.router.url.slice(1);
+
+        if (!isNaN(parseInt(param, 10))) {
+          this.cryptocurrency.getDetailedCurrency(param).subscribe(details => {
+            this.cryptocurrency.updateDetailedCurrency(details);
+          });
+        }
       }
     });
   }
