@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detailed-currency.component.css']
 })
 export class DetailedCurrencyComponent implements OnInit {
+  currency;
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

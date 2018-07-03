@@ -9,12 +9,14 @@ import { CurrencyListComponent } from './components/currency-list/currency-list.
 import { CryptocurrencyService } from './services/cryptocurrency.service';
 import { DetailedCurrencyComponent } from './components/detailed-currency/detailed-currency.component';
 import { PropertiesPipe } from './pipes/properties.pipe';
+import { WelcomeMessageComponent } from './components/welcome-message/welcome-message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrencyListComponent,
     DetailedCurrencyComponent,
+    WelcomeMessageComponent,
   ],
   imports: [
     BrowserModule,
