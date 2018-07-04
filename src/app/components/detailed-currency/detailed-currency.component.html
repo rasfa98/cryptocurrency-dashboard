@@ -1,3 +1,61 @@
 <div *ngIf="currencyDetails">
-  <h2 class="heading center-align">{{ currencyDetails.name }}</h2>
+  <h2 class="heading white-text center-align">{{ currencyDetails.name }}</h2>
+
+  <div class="row">
+    <div class="col s3">
+      <div class="card">
+        <div class="card-content white-text">
+          <span class="card-title center-align">
+            <p>Price</p>
+            <i class="material-icons">euro_symbol</i>
+          </span>
+          <p class="center-align">{{ currencyDetails.quotes.EUR.price }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s3">
+      <div class="card">
+        <div class="card-content white-text">
+          <span class="card-title center-align">
+            <p>Rank</p>
+            <i class="material-icons">bar_chart</i>
+          </span>
+          <p class="center-align">{{ currencyDetails.rank }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s3">
+      <div class="card">
+        <div class="card-content white-text">
+          <span class="card-title center-align">
+            <p>Change (24h)</p>
+            <i class="material-icons">
+              <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h < 0">
+                keyboard_arrow_down
+              </span>
+
+              <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h > 0">
+                keyboard_arrow_up
+              </span>
+            </i>
+          </span>
+          <p class="center-align">{{ currencyDetails.quotes.EUR.percent_change_24h }}%</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s3">
+      <div class="card">
+        <div class="card-content white-text">
+          <span class="card-title center-align">
+            <p>Market cap</p>
+            <i class="material-icons">pie_chart</i>
+          </span>
+          <p class="center-align">{{ currencyDetails.quotes.EUR.market_cap }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

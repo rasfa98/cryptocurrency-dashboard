@@ -9,7 +9,6 @@
 .collection a.collection-item {
   border: none;
   background-color: #1d354f;
-  color: #f1ffff;
 }
 
 .collection a.collection-item:hover {
