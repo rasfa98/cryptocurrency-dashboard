@@ -14,3 +14,7 @@
 .collection a.collection-item:hover {
   opacity: 0.5;
 }
+
+.active-link {
+  background-color: #1b2c40 !important;
+}
