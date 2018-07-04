@@ -8,8 +8,8 @@
           <span class="card-title center-align">
             <p>Price</p>
             <i class="material-icons">euro_symbol</i>
+            <p class="center-align">{{ currencyDetails.quotes.EUR.price }}€</p>
           </span>
-          <p class="center-align">{{ currencyDetails.quotes.EUR.price }}</p>
         </div>
       </div>
     </div>
@@ -20,8 +20,8 @@
           <span class="card-title center-align">
             <p>Rank</p>
             <i class="material-icons">bar_chart</i>
+            <p class="center-align">#{{ currencyDetails.rank }}</p>
           </span>
-          <p class="center-align">{{ currencyDetails.rank }}</p>
         </div>
       </div>
     </div>
@@ -40,8 +40,8 @@
                 keyboard_arrow_up
               </span>
             </i>
+            <p class="center-align" [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_24h > 0, 'red' : currencyDetails.quotes.EUR.percent_change_24h < 0}">{{ currencyDetails.quotes.EUR.percent_change_24h }}%</p>
           </span>
-          <p class="center-align">{{ currencyDetails.quotes.EUR.percent_change_24h }}%</p>
         </div>
       </div>
     </div>
@@ -52,8 +52,8 @@
           <span class="card-title center-align">
             <p>Market cap</p>
             <i class="material-icons">pie_chart</i>
+            <p class="center-align">{{ currencyDetails.quotes.EUR.market_cap }}€</p>
           </span>
-          <p class="center-align">{{ currencyDetails.quotes.EUR.market_cap }}</p>
         </div>
       </div>
     </div>
