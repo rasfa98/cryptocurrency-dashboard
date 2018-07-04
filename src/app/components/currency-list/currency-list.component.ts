@@ -8,42 +8,28 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./currency-list.component.css']
 })
 export class CurrencyListComponent implements OnInit {
-  currencies;
+  currencies = [];
   currencyDetails;
-  param;
 
   constructor(private cryptocurrency: CryptocurrencyService, private router: Router) { }
 
   ngOnInit() {
     this.cryptocurrency.getCurrencies().subscribe(currencies => {
-      this.param = this.validateParam();
+      const objectValues = Object.values(currencies.data);
 
-      this.currencies = currencies.data;
+      for (let i = 0; i < objectValues.length; i++) {
+        this.currencies.push(objectValues[i]);
+      }
 
-      if (this.param && !this.currencyDetails) { this.updateDetailedCurrency(); }
+      this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
+      this.cryptocurrency.updateDetailedCurrency(this.currencyDetails);
     });
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.param = this.validateParam();
-
-        if (this.param && this.currencies) { this.updateDetailedCurrency(); }
+        this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
+        this.cryptocurrency.updateDetailedCurrency(this.currencyDetails);
       }
     });
-  }
-
-  objectKeys(obj) {
-    if (obj) { return Object.keys(obj); }
-  }
-
-  validateParam() {
-    const param = this.router.url.slice(1);
-
-    if (!isNaN(parseInt(param, 10))) { return param; }
-  }
-
-  updateDetailedCurrency() {
-    this.cryptocurrency.updateDetailedCurrency(this.currencies[this.param]);
-    this.currencyDetails = this.currencies[this.param];
   }
 }

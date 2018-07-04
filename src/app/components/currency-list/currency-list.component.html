@@ -1,3 +1,3 @@
-<div class="collection">  
-  <a *ngFor="let key of objectKeys(currencies)" [routerLink]="currencies[key].id" routerLinkActive="active-link" class="collection-item white-text">{{ currencies[key].name }}</a>
+<div class="collection">
+  <a *ngFor="let currency of currencies" [routerLink]="currency.symbol" routerLinkActive="active-link" class="collection-item white-text">{{ currency.name }}</a>
 </div>
