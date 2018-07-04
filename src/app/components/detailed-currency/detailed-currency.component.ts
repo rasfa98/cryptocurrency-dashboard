@@ -7,13 +7,13 @@ import { CryptocurrencyService } from '../../services/cryptocurrency.service';
   styleUrls: ['./detailed-currency.component.css']
 })
 export class DetailedCurrencyComponent implements OnInit {
-  currency;
+  currencyDetails;
 
   constructor(private crypto: CryptocurrencyService) { }
 
   ngOnInit() {
-    this.crypto.detailedCurrency.subscribe(details => {
-      this.currency = details;
+    this.crypto.detailedCurrency.subscribe(currencyDetails => {
+      this.currencyDetails = currencyDetails;
     });
   }
 

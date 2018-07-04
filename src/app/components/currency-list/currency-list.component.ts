@@ -9,37 +9,41 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class CurrencyListComponent implements OnInit {
   currencies;
-  detailed;
+  currencyDetails;
+  param;
 
   constructor(private cryptocurrency: CryptocurrencyService, private router: Router) { }
 
   ngOnInit() {
     this.cryptocurrency.getCurrencies().subscribe(currencies => {
-      const param = this.router.url.slice(1);
+      this.param = this.validateParam();
 
       this.currencies = currencies.data;
 
-      if (!isNaN(parseInt(param, 10)) && !this.detailed) {
-        this.cryptocurrency.updateDetailedCurrency(this.currencies[param]);
-        this.detailed = this.currencies[param];
-      }
+      if (this.param && !this.currencyDetails) { this.updateDetailedCurrency(); }
     });
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        const param = this.router.url.slice(1);
+        this.param = this.validateParam();
 
-        if (!isNaN(parseInt(param, 10)) && this.currencies) {
-          this.cryptocurrency.updateDetailedCurrency(this.currencies[param]);
-          this.detailed = this.currencies[param];
-        }
+        if (this.param && this.currencies) { this.updateDetailedCurrency(); }
       }
     });
   }
 
   objectKeys(obj) {
-    if (obj) {
-      return Object.keys(obj);
-    }
+    if (obj) { return Object.keys(obj); }
+  }
+
+  validateParam() {
+    const param = this.router.url.slice(1);
+
+    if (!isNaN(parseInt(param, 10))) { return param; }
+  }
+
+  updateDetailedCurrency() {
+    this.cryptocurrency.updateDetailedCurrency(this.currencies[this.param]);
+    this.currencyDetails = this.currencies[this.param];
   }
 }
