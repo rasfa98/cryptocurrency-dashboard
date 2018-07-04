@@ -20,14 +20,12 @@ export class CurrencyListComponent implements OnInit {
       for (let i = 0; i < objectValues.length; i++) {
         this.currencies.push(objectValues[i]);
       }
-
-      this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
-      this.cryptocurrency.updateDetailedCurrency(this.currencyDetails);
     });
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
+
         this.cryptocurrency.updateDetailedCurrency(this.currencyDetails);
       }
     });

@@ -26,7 +26,7 @@ export class CryptocurrencyService {
   getHistoricalData(currency) {
     const headers = new Headers({ 'Origin': 'rasmus.falk@live.se' });
 
-    return this.http.get(this.HISTORICAL_URL + 'fsym=' + currency, headers: headers);
+    return this.http.get(this.HISTORICAL_URL + '&fsym=' + currency, headers: headers);
   }
 
   updateDetailedCurrency(detailedCurrency) {
