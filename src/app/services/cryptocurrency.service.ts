@@ -17,13 +17,7 @@ export class CryptocurrencyService {
   getCurrencies() {
     const headers = new Headers({ 'Origin': 'rasmus.falk@live.se' });
 
-    return this.http.get(this.BASE_URL + 'listings', headers: headers);
-  }
-
-  getDetailedCurrency(id) {
-    const headers = new Headers({ 'Origin': 'rasmus.falk@live.se' });
-
-    return this.http.get(this.BASE_URL + 'ticker/' + id + '/?convert=EUR', headers: headers);
+    return this.http.get(this.BASE_URL + 'ticker/?convert=EUR', headers: headers);
   }
 
   updateDetailedCurrency(detailedCurrency) {

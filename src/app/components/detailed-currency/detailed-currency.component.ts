@@ -13,10 +13,7 @@ export class DetailedCurrencyComponent implements OnInit {
 
   ngOnInit() {
     this.crypto.detailedCurrency.subscribe(details => {
-      if (details) {
-        this.currency = details.data;
-        console.log(details.data.quotes.EUR.price);
-      }
+      this.currency = details;
     });
   }
 
