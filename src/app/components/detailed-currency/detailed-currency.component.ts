@@ -19,10 +19,7 @@ export class DetailedCurrencyComponent implements OnInit {
 
       if (this.currencyDetails) {
         this.crypto.getHistoricalData(currencyDetails.symbol).subscribe(currencyHistory => {
-          console.log(currencyHistory);
-
           const max = currencyHistory['Data'].map(x => x.high);
-          const min = currencyHistory['Data'].map(x => x.low);
           const dates = currencyHistory['Data'].map(x => x.time);
 
           const historicalDates = [];
@@ -32,6 +29,10 @@ export class DetailedCurrencyComponent implements OnInit {
             historicalDates.push(date.toLocaleTimeString('en', { year: 'numeric', month: 'short', day: 'numeric' }));
           });
 
+          if (this.chart.length !== 0) {
+            this.chart.destroy();
+          }
+
           this.chart = new Chart('canvas', {
             type: 'line',
             data: {
@@ -39,26 +40,39 @@ export class DetailedCurrencyComponent implements OnInit {
               datasets: [
                 {
                   data: max,
-                  borderColor: 'red',
-                  fill: false
+                  borderColor: '#3a7ba6',
+                  fill: true,
+                  backgroundColor: '#1d3a57'
                 },
-                {
-                  data: min,
-                  borderColor: 'blue',
-                  fill: false
-                }
               ];
             },
             options: {
               legend: {
-                display: false;
+                display: false
               },
               scales: {
                 xAxes: [{
-                  display: true;
+                  ticks: {
+                    fontColor: '#fff'
+                  }
+                  display: true,
+                  type: 'time'
+                  time: {
+                    displayFormats: {
+                      'millisecond': 'DD MMM',
+                      'second': 'DD MMM',
+                      'minute': 'DD MMM',
+                      'hour': 'DD MMM',
+                      'day': 'DD MMM',
+                      'week': 'DD MMM',
+                      'month': 'DD MMM',
+                      'quarter': 'DD MMM',
+                      'year': 'DD MMM',
+                    },
+                  }
                 }],
                 yAxes: [{
-                  display: true;
+                  display: false
                 }]
               }
             }

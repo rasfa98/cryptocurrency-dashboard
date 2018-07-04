@@ -6,8 +6,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CryptocurrencyService {
-  LIST_URL = 'https://cors-anywhere.herokuapp.com/https://api.coinmarketcap.com/v2/';
-  HISTORICAL_URL = 'https://min-api.cryptocompare.com/data/histoday?tsym=EUR&limit=6';
+  LIST_URL = 'https://api.coinmarketcap.com/v2/';
+  HISTORICAL_URL = 'https://min-api.cryptocompare.com/data/histohour?tsym=EUR&limit=200';
 
   private DetailedCurrency = new BehaviorSubject(null);
   private HistoricalData = new BehaviorSubject(null);
