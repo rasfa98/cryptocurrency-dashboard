@@ -14,6 +14,7 @@ export class DetailedCurrencyComponent implements OnInit {
   ngOnInit() {
     this.crypto.detailedCurrency.subscribe(currencyDetails => {
       this.currencyDetails = currencyDetails;
+      console.log(currencyDetails);
     });
   }
 
