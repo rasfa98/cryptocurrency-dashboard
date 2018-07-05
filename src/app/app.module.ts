@@ -5,11 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CurrencyListComponent } from './components/currency-list/currency-list.component';
+import { DetailedCurrencyComponent } from './components/detailed-currency/detailed-currency.component';
+import { WelcomeMessageComponent } from './components/welcome-message/welcome-message.component';
 
 import { CryptocurrencyService } from './services/cryptocurrency.service';
-import { DetailedCurrencyComponent } from './components/detailed-currency/detailed-currency.component';
-import { PropertiesPipe } from './pipes/properties.pipe';
-import { WelcomeMessageComponent } from './components/welcome-message/welcome-message.component';
 
 @NgModule({
   declarations: [

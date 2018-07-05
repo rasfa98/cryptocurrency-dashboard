@@ -8,9 +8,10 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./currency-list.component.css']
 })
 export class CurrencyListComponent implements OnInit {
-  currencies = [];
-  currencyDetails;
-  timeout;
+
+  currencies: any = [];
+  currencyDetails: any;
+  timeout: any;
 
   constructor(private cryptocurrency: CryptocurrencyService, private router: Router) { }
 
@@ -33,7 +34,7 @@ export class CurrencyListComponent implements OnInit {
   }
 
   mapCurrencyData(currencies) {
-    const objectValues = Object.values(currencies.data);
+    const objectValues = Object.values(currencies);
 
     for (let i = 0; i < objectValues.length; i++) {
       this.currencies.push(objectValues[i]);

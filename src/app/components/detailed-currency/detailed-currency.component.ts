@@ -8,9 +8,9 @@ import { Chart } from 'chart.js';
   styleUrls: ['./detailed-currency.component.css']
 })
 export class DetailedCurrencyComponent implements OnInit {
-  currencyDetails;
-  lastUpdate;
-  chart = [];
+
+  currencyDetails: any;
+  chart: any = [];
 
   constructor(private crypto: CryptocurrencyService) { }
 
@@ -20,8 +20,8 @@ export class DetailedCurrencyComponent implements OnInit {
 
       if (this.currencyDetails) {
         this.crypto.getHistoricalData(currencyDetails.symbol).subscribe(currencyHistory => {
-          const max = currencyHistory['Data'].map(x => x.high);
-          const dates = currencyHistory['Data'].map(x => x.time);
+          const max = currencyHistory.map(x => x.high);
+          const dates = currencyHistory.map(x => x.time);
 
           const formatedDates = [];
 
@@ -30,16 +30,14 @@ export class DetailedCurrencyComponent implements OnInit {
             formatedDates.push(date);
           });
 
-          if (this.chartLastUpdated !== new Date().getHours()) {
-            this.createChart(max, formatedDates);
-          }
+          this.createChart(max, formatedDates);
         });
       }
     });
   }
 
   createChart(data, dates) {
-    // Remove existing charts from DOM.
+    // Update existing chart.
     if (this.chart.length !== 0) {
       this.chart.data.labels = dates;
       this.chart.data.datasets[0].data = data;
@@ -57,7 +55,7 @@ export class DetailedCurrencyComponent implements OnInit {
             backgroundColor: '#1d3a57',
             lineTension: 0,
             borderWidth: 1.5
-          }, ];
+          }],
         },
         options: {
           elements: {
@@ -77,12 +75,12 @@ export class DetailedCurrencyComponent implements OnInit {
                 autoSkip: true,
                 maxTicksLimit: 6,
                 fontColor: '#fff'
-              }
+              },
               display: true,
-              type: 'time'
+              type: 'time',
               time: {
                 unit: 'day'
-              }
+              },
             }],
             yAxes: [{
               display: true,
