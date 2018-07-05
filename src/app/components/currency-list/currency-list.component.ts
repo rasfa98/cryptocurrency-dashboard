@@ -15,19 +15,28 @@ export class CurrencyListComponent implements OnInit {
 
   ngOnInit() {
     this.cryptocurrency.getCurrencies().subscribe(currencies => {
-      const objectValues = Object.values(currencies.data);
-
-      for (let i = 0; i < objectValues.length; i++) {
-        this.currencies.push(objectValues[i]);
-      }
+      this.mapCurrencyData(currencies);
+      this.updateDetailedCurrency();
     });
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
-        this.cryptocurrency.updateDetailedCurrency(this.currencyDetails);
+        this.updateDetailedCurrency();
       }
     });
+  }
+
+  mapCurrencyData(currencies) {
+    const objectValues = Object.values(currencies.data);
+
+    for (let i = 0; i < objectValues.length; i++) {
+      this.currencies.push(objectValues[i]);
+    }
+  }
+
+  updateDetailedCurrency() {
+    this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
+    this.cryptocurrency.updateDetailedCurrency(this.currencyDetails);
   }
 
 }
