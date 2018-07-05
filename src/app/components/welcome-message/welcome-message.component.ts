@@ -10,4 +10,5 @@ export class WelcomeMessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
 }

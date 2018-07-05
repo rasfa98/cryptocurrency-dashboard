@@ -6,8 +6,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CryptocurrencyService {
-  LIST_URL = 'https://api.coinmarketcap.com/v2/';
-  HISTORICAL_URL = 'https://min-api.cryptocompare.com/data/histohour?tsym=EUR&limit=200';
 
   private DetailedCurrency = new BehaviorSubject(null);
   private HistoricalData = new BehaviorSubject(null);
@@ -18,15 +16,11 @@ export class CryptocurrencyService {
   constructor(private http: HttpClient) { }
 
   getCurrencies() {
-    const headers = new Headers({ 'Origin': 'rasmus.falk@live.se' });
-
-    return this.http.get(this.LIST_URL + 'ticker/?convert=EUR', headers: headers);
+    return this.http.get('https://api.coinmarketcap.com/v2/ticker/?convert=EUR');
   }
 
   getHistoricalData(currency) {
-    const headers = new Headers({ 'Origin': 'rasmus.falk@live.se' });
-
-    return this.http.get(this.HISTORICAL_URL + '&fsym=' + currency, headers: headers);
+    return this.http.get('https://min-api.cryptocompare.com/data/histohour?tsym=EUR&limit=200&fsym=' + currency);
   }
 
   updateDetailedCurrency(detailedCurrency) {
@@ -36,4 +30,5 @@ export class CryptocurrencyService {
   updateHistoricalData(historicalData) {
     this.HistoricalData.next(historicalData);
   }
+
 }

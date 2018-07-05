@@ -1,23 +1,24 @@
 .card {
-    background-color: #1d354f;
+  background-color: #1d354f;
 }
 
 .card p:first-of-type {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .card span i {
-    font-size: 40px;
+  font-size: 40px;
 }
 
-.red, .green {
-    background-color: transparent !important;
+.red,
+.green {
+  background-color: transparent !important;
 }
 
 .red {
-    color: #d16262;
+  color: #d16262;
 }
 
 .green {
-    color: #62d19e;
+  color: #62d19e;
 }

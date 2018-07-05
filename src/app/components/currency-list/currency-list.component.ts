@@ -25,9 +25,9 @@ export class CurrencyListComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
-
         this.cryptocurrency.updateDetailedCurrency(this.currencyDetails);
       }
     });
   }
+
 }
