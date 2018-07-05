@@ -17,21 +17,21 @@ export class DetailedCurrencyComponent implements OnInit {
     this.crypto.detailedCurrency.subscribe(currencyDetails => {
       this.currencyDetails = currencyDetails;
 
-      if (this.currencyDetails) {
-        this.crypto.getHistoricalData(currencyDetails.symbol).subscribe(currencyHistory => {
-          const max = currencyHistory['Data'].map(x => x.high);
-          const dates = currencyHistory['Data'].map(x => x.time);
+      // if (this.currencyDetails) {
+      //   this.crypto.getHistoricalData(currencyDetails.symbol).subscribe(currencyHistory => {
+      //     const max = currencyHistory['Data'].map(x => x.high);
+      //     const dates = currencyHistory['Data'].map(x => x.time);
 
-          const formatedDates = [];
+      //     const formatedDates = [];
 
-          dates.forEach(x => {
-            const date = new Date(x * 1000);
-            formatedDates.push(date);
-          });
+      //     dates.forEach(x => {
+      //       const date = new Date(x * 1000);
+      //       formatedDates.push(date);
+      //     });
 
-          this.createChart(max, formatedDates);
-        });
-      }
+      //     this.createChart(max, formatedDates);
+      //   });
+      // }
     });
   }
 

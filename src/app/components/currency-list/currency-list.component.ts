@@ -10,6 +10,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class CurrencyListComponent implements OnInit {
   currencies = [];
   currencyDetails;
+  timeout;
 
   constructor(private cryptocurrency: CryptocurrencyService, private router: Router) { }
 
@@ -17,10 +18,15 @@ export class CurrencyListComponent implements OnInit {
     this.cryptocurrency.getCurrencies().subscribe(currencies => {
       this.mapCurrencyData(currencies);
       this.updateDetailedCurrency();
+
+      this.startAutoUpdate();
     });
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        clearTimeout(this.timeout);
+        this.startAutoUpdate();
+
         this.updateDetailedCurrency();
       }
     });
@@ -37,6 +43,16 @@ export class CurrencyListComponent implements OnInit {
   updateDetailedCurrency() {
     this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
     this.cryptocurrency.updateDetailedCurrency(this.currencyDetails);
+  }
+
+  startAutoUpdate() {
+    this.timeout = window.setInterval(() => {
+      this.cryptocurrency.getCurrencies().subscribe(currencies => {
+        this.currencies = [];
+        this.mapCurrencyData(currencies);
+        this.updateDetailedCurrency();
+      });
+    }, 300000);
   }
 
 }

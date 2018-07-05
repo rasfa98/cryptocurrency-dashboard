@@ -8,15 +8,12 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class CryptocurrencyService {
 
   private DetailedCurrency = new BehaviorSubject(null);
-  private HistoricalData = new BehaviorSubject(null);
-
   public detailedCurrency = this.DetailedCurrency.asObservable();
-  public historicalData = this.HistoricalData.asObservable();
 
   constructor(private http: HttpClient) { }
 
   getCurrencies() {
-    return this.http.get('https://api.coinmarketcap.com/v2/ticker/?convert=EUR');
+    return this.http.get('https://api.coinmarketcap.com/v2/ticker/?convert=EUR&sort="rank"');
   }
 
   getHistoricalData(currency) {
@@ -25,10 +22,6 @@ export class CryptocurrencyService {
 
   updateDetailedCurrency(detailedCurrency) {
     this.DetailedCurrency.next(detailedCurrency);
-  }
-
-  updateHistoricalData(historicalData) {
-    this.HistoricalData.next(historicalData);
   }
 
 }
