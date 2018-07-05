@@ -17,7 +17,7 @@ export class CryptocurrencyService {
   }
 
   getHistoricalData(currency) {
-    return this.http.get('https://min-api.cryptocompare.com/data/histohour?tsym=EUR&limit=200&fsym=' + currency);
+    return this.http.get('https://min-api.cryptocompare.com/data/histohour?tsym=EUR&limit=150&fsym=' + currency);
   }
 
   updateDetailedCurrency(detailedCurrency) {

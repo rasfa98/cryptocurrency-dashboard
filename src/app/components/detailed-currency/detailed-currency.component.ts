@@ -54,36 +54,41 @@ export class DetailedCurrencyComponent implements OnInit {
             data: data,
             borderColor: '#3a7ba6',
             fill: true,
-            backgroundColor: '#1d3a57'
+            backgroundColor: '#1d3a57',
+            lineTension: 0,
+            borderWidth: 1.5
           }, ];
         },
         options: {
+          elements: {
+            point: {
+              radius: 0
+            },
+            line: {
+              tension: 0
+            },
+          },
           legend: {
             display: false
           },
           scales: {
             xAxes: [{
               ticks: {
+                autoSkip: true,
+                maxTicksLimit: 6,
                 fontColor: '#fff'
               }
               display: true,
               type: 'time'
               time: {
-                displayFormats: {
-                  'millisecond': 'DD MMM',
-                  'second': 'DD MMM',
-                  'minute': 'DD MMM',
-                  'hour': 'DD MMM',
-                  'day': 'DD MMM',
-                  'week': 'DD MMM',
-                  'month': 'DD MMM',
-                  'quarter': 'DD MMM',
-                  'year': 'DD MMM',
-                },
+                unit: 'day'
               }
             }],
             yAxes: [{
-              display: false
+              display: true,
+              ticks: {
+                fontColor: '#fff'
+              }
             }]
           }
         }
