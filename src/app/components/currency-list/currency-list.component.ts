@@ -17,6 +17,7 @@ export class CurrencyListComponent implements OnInit {
 
   ngOnInit() {
     this.cryptocurrency.getCurrencies().subscribe(currencies => {
+      this.cryptocurrency.updateCurrencies(currencies);
       this.mapCurrencyData(currencies);
       this.updateDetailedCurrency();
 

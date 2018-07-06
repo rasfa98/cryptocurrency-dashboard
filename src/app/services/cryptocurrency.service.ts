@@ -9,7 +9,10 @@ import { map } from 'rxjs/operators';
 export class CryptocurrencyService {
 
   private DetailedCurrency = new BehaviorSubject(null);
+  private Currencies = new BehaviorSubject(null);
+
   public detailedCurrency = this.DetailedCurrency.asObservable();
+  public currencies = this.Currencies.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +28,10 @@ export class CryptocurrencyService {
 
   updateDetailedCurrency(detailedCurrency) {
     this.DetailedCurrency.next(detailedCurrency);
+  }
+
+  updateCurrencies(currencies) {
+    this.Currencies.next(currencies);
   }
 
 }

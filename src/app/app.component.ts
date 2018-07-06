@@ -1,8 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CryptocurrencyService } from './services/cryptocurrency.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent { }
+export class AppComponent implements OnInit {
+  showLoading = true;
+
+  constructor(private crypto: CryptocurrencyService) { }
+
+  ngOnInit() {
+    this.crypto.currencies.subscribe(currencies => {
+      if (currencies) {
+        this.showLoading = false;
+      }
+    });
+  }
+
+}
