@@ -11,10 +11,6 @@
   background-color: #1d354f;
 }
 
-.collection a.collection-item:hover {
-  opacity: 0.5;
-}
-
-.active-link {
+.collection a.collection-item:hover, .active-link {
   background-color: #1b2c40 !important;
 }

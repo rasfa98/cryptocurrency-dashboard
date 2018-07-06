@@ -9,6 +9,7 @@ import { DetailedCurrencyComponent } from './components/detailed-currency/detail
 import { WelcomeMessageComponent } from './components/welcome-message/welcome-message.component';
 
 import { CryptocurrencyService } from './services/cryptocurrency.service';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CryptocurrencyService } from './services/cryptocurrency.service';
     CurrencyListComponent,
     DetailedCurrencyComponent,
     WelcomeMessageComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
