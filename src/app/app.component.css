@@ -7,6 +7,19 @@
   margin: 0;
 }
 
-.s10 {
+.l10 {
   background-color: #1b2c40;
+  overflow: scroll;
+}
+
+@media screen and (max-width: 992px) {
+  .col {
+    height: auto;
+  }
+  .l2 {
+    height: 200px;
+  }
+  .l10 {
+    overflow: visible;
+  }
 }
