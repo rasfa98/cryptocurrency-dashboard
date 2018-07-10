@@ -25,7 +25,7 @@
           <mat-card-content>
             <mat-icon>euro_symbol</mat-icon>
 
-            <p>{{ currencyDetails.quotes.EUR.price | currency : 'EUR' : 'symbol' }}</p>
+            <p>{{ currencyDetails.quotes.EUR.price }}</p>
 
           </mat-card-content>
         </mat-card>
@@ -62,15 +62,16 @@
           <mat-card-content>
             <mat-icon>pie_chart</mat-icon>
 
-            <p>{{ currencyDetails.quotes.EUR.market_cap | currency : 'EUR' : 'symbol' : '1.0-2' }}</p>
+            <p>{{ currencyDetails.quotes.EUR.market_cap }}</p>
 
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
     </mat-grid-list>
-  </div>
 
-  <div *ngIf="chart">
-    <canvas id="canvas">{{ chart }}</canvas>
+
+    <div *ngIf="chart">
+      <canvas id="canvas">{{ chart }}</canvas>
+    </div>
   </div>
 </div>
