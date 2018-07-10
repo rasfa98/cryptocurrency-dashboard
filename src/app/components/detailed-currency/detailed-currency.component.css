@@ -1,0 +1,19 @@
+.container {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.red {
+  color: #d16262;
+}
+
+.green {
+  color: #62d19e;
+}
+
+mat-card {
+    width: 100%;
+    text-align: center;
+}

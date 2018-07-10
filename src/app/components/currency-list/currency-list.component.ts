@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-main-nav',
-  templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.css']
+  selector: 'app-currency-list',
+  templateUrl: './currency-list.component.html',
+  styleUrls: ['./currency-list.component.css']
 })
-export class MainNavComponent implements OnInit {
+export class CurrencyListComponent implements OnInit {
 
   currencies: any = [];
   currencyDetails: any;
@@ -65,4 +65,4 @@ export class MainNavComponent implements OnInit {
     }, 300000);
   }
 
-  }
+}
