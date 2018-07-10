@@ -5,26 +5,37 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CurrencyListComponent } from './components/currency-list/currency-list.component';
 import { DetailedCurrencyComponent } from './components/detailed-currency/detailed-currency.component';
 import { WelcomeMessageComponent } from './components/welcome-message/welcome-message.component';
 
 import { CryptocurrencyService } from './services/cryptocurrency.service';
 import { LoadingComponent } from './components/loading/loading.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
+         MatGridListModule, MatCardModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrencyListComponent,
     DetailedCurrencyComponent,
     WelcomeMessageComponent,
     LoadingComponent,
+    MainNavComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule
   ],
   providers: [CryptocurrencyService],
   bootstrap: [AppComponent]

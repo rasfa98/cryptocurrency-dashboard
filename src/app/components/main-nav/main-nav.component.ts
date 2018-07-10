@@ -1,19 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { CryptocurrencyService } from '../../services/cryptocurrency.service';
 import { Router, NavigationEnd } from '@angular/router';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-currency-list',
-  templateUrl: './currency-list.component.html',
-  styleUrls: ['./currency-list.component.css']
+  selector: 'app-main-nav',
+  templateUrl: './main-nav.component.html',
+  styleUrls: ['./main-nav.component.css']
 })
-export class CurrencyListComponent implements OnInit {
+export class MainNavComponent implements OnInit {
 
   currencies: any = [];
   currencyDetails: any;
   timeout: any;
 
-  constructor(private cryptocurrency: CryptocurrencyService, private router: Router) { }
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
+  constructor(private breakpointObserver: BreakpointObserver, private cryptocurrency: CryptocurrencyService, private router: Router) {}
 
   ngOnInit() {
     this.cryptocurrency.getCurrencies().subscribe(currencies => {
@@ -57,4 +65,4 @@ export class CurrencyListComponent implements OnInit {
     }, 300000);
   }
 
-}
+  }
