@@ -17,7 +17,7 @@ export class CryptocurrencyService {
   constructor(private http: HttpClient) { }
 
   getCurrencies() {
-    return this.http.get<any>('https://api.coinmarketcap.com/v2/ticker/?convert=EUR&sort="rank"')
+    return this.http.get<any>('https://api.coinmarketcap.com/v2/ticker/?convert=EUR&sort=id')
       .pipe(map(res => res.data));
   }
 
