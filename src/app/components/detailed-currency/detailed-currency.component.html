@@ -3,7 +3,7 @@
     <h1>{{ currencyDetails.name }}</h1>
 
     <mat-grid-list cols="12" rowHeight="200" gutterSize="10">
-      <mat-grid-tile colspan="6">
+      <mat-grid-tile colspan="4">
         <mat-card>
           <mat-card-header>
             <mat-card-title>Rank</mat-card-title>
@@ -11,13 +11,13 @@
           <mat-card-content>
             <mat-icon>bar_chart</mat-icon>
 
-            <p>#{{ currencyDetails.rank }}</p>
+            <p>{{ currencyDetails.rank || 'N/A' }}</p>
 
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="6">
+      <mat-grid-tile colspan="4">
         <mat-card>
           <mat-card-header>
             <mat-card-title>Price</mat-card-title>
@@ -25,13 +25,55 @@
           <mat-card-content>
             <mat-icon>euro_symbol</mat-icon>
 
-            <p>{{ currencyDetails.quotes.EUR.price }}</p>
+            <p>{{ currencyDetails.quotes.EUR.price || 'N/A' }}</p>
 
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="6">
+      <mat-grid-tile colspan="4">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Market cap</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-icon>pie_chart</mat-icon>
+
+            <p>{{ currencyDetails.quotes.EUR.market_cap || 'N/A' }}</p>
+
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="4">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Change (1h)</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-icon>
+              <span *ngIf="currencyDetails.quotes.EUR.percent_change_1h < 0">
+                keyboard_arrow_down
+              </span>
+
+              <span *ngIf="currencyDetails.quotes.EUR.percent_change_1h > 0">
+                keyboard_arrow_up
+              </span>
+
+              <span *ngIf="!currencyDetails.quotes.EUR.percent_change_1h">
+                ?
+              </span>
+            </mat-icon>
+
+            <p [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_1h > 0, 'red' : currencyDetails.quotes.EUR.percent_change_1h < 0}">
+              {{ currencyDetails.quotes.EUR.percent_change_1h || 'N/A' }}
+              <span *ngIf="currencyDetails.quotes.EUR.percent_change_1h">%</span>
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="4">
         <mat-card>
           <mat-card-header>
             <mat-card-title>Change (24h)</mat-card-title>
@@ -45,30 +87,50 @@
               <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h > 0">
                 keyboard_arrow_up
               </span>
+
+              <span *ngIf="!currencyDetails.quotes.EUR.percent_change_24h">
+                ?
+              </span>
             </mat-icon>
 
             <p [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_24h > 0, 'red' : currencyDetails.quotes.EUR.percent_change_24h < 0}">
-              {{ currencyDetails.quotes.EUR.percent_change_24h }}%</p>
+              {{ currencyDetails.quotes.EUR.percent_change_24h || 'N/A' }}
+              <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h">%</span>
+            </p>
 
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="6">
+      <mat-grid-tile colspan="4">
         <mat-card>
           <mat-card-header>
-            <mat-card-title>Market cap</mat-card-title>
+            <mat-card-title>Change (7d)</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <mat-icon>pie_chart</mat-icon>
+            <mat-icon>
+              <span *ngIf="currencyDetails.quotes.EUR.percent_change_7d < 0">
+                keyboard_arrow_down
+              </span>
 
-            <p>{{ currencyDetails.quotes.EUR.market_cap }}</p>
+              <span *ngIf="currencyDetails.quotes.EUR.percent_change_7d > 0">
+                keyboard_arrow_up
+              </span>
+
+              <span *ngIf="!currencyDetails.quotes.EUR.percent_change_7d">
+                ?
+              </span>
+            </mat-icon>
+
+            <p [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_7d > 0, 'red' : currencyDetails.quotes.EUR.percent_change_7d < 0}">
+              {{ currencyDetails.quotes.EUR.percent_change_7d || 'N/A' }}
+              <span *ngIf="currencyDetails.quotes.EUR.percent_change_7d">%</span>
+            </p>
 
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
     </mat-grid-list>
-
 
     <div *ngIf="chart">
       <canvas id="canvas">{{ chart }}</canvas>

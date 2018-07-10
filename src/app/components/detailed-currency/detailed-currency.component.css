@@ -18,7 +18,25 @@
   color: #62d19e;
 }
 
+.mat-card-header {
+  display: block;
+}
+
+.mat-card-title {
+  font-size: 25px;
+}
+
+mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+}
+
 mat-card {
-    width: 100%;
+    min-width: 300px;
     text-align: center;
+}
+
+mat-card p {
+  font-size: 20px;
 }
