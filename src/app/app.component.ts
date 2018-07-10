@@ -7,16 +7,9 @@ import { CryptocurrencyService } from './services/cryptocurrency.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  showLoading = true;
 
   constructor(private crypto: CryptocurrencyService) { }
 
-  ngOnInit() {
-    this.crypto.currencies.subscribe(currencies => {
-      if (currencies) {
-        this.showLoading = false;
-      }
-    });
-  }
+  ngOnInit() { }
 
 }
