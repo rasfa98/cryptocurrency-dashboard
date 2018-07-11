@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { DetailedCurrencyComponent } from './components/detailed-currency/detailed-currency.component';
@@ -32,7 +33,8 @@ import { MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCar
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    FlexLayoutModule
   ],
   providers: [CryptocurrencyService],
   bootstrap: [AppComponent]

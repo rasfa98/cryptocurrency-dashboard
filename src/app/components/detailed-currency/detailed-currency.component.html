@@ -1,11 +1,9 @@
-<div class="container">
+<div class="wrapper">
   <div *ngIf="currencyDetails">
     <h1>{{ currencyDetails.name }}</h1>
 
-    <h2>Last updated: {{ currencyDetails.last_updated * 1000 | date: 'medium' }}</h2>
-
-    <mat-grid-list cols="12" rowHeight="200" gutterSize="10">
-      <mat-grid-tile colspan="4">
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
+      <div fxFlex="35%">
         <mat-card>
           <mat-card-header>
             <mat-card-title>Rank</mat-card-title>
@@ -17,9 +15,9 @@
 
           </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
+      </div>
 
-      <mat-grid-tile colspan="4">
+      <div fxFlex="35%">
         <mat-card>
           <mat-card-header>
             <mat-card-title>Price</mat-card-title>
@@ -27,13 +25,13 @@
           <mat-card-content>
             <mat-icon>euro_symbol</mat-icon>
 
-            <p>{{ currencyDetails.quotes.EUR.price || 'N/A' }}</p>
+            <p>{{ currencyDetails.quotes.EUR.price | currency: 'EUR' : 'symbol' : '0.7-7' || 'N/A' }}</p>
 
           </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
+      </div>
 
-      <mat-grid-tile colspan="4">
+      <div fxFlex="35%">
         <mat-card>
           <mat-card-header>
             <mat-card-title>Market cap</mat-card-title>
@@ -41,16 +39,18 @@
           <mat-card-content>
             <mat-icon>pie_chart</mat-icon>
 
-            <p>{{ currencyDetails.quotes.EUR.market_cap || 'N/A' }}</p>
+            <p>{{ currencyDetails.quotes.EUR.market_cap | currency: 'EUR' : 'symbol' : '0.0-0' || 'N/A' }}</p>
 
           </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
+      </div>
+    </div>
 
-      <mat-grid-tile colspan="4">
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
+      <div fxFlex="35%">
         <mat-card>
           <mat-card-header>
-            <mat-card-title>Change (1h)</mat-card-title>
+            <mat-card-title>Change, 1h</mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <mat-icon>
@@ -73,12 +73,12 @@
             </p>
           </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
+      </div>
 
-      <mat-grid-tile colspan="4">
+      <div fxFlex="35%">
         <mat-card>
           <mat-card-header>
-            <mat-card-title>Change (24h)</mat-card-title>
+            <mat-card-title>Change, 24h</mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <mat-icon>
@@ -102,12 +102,12 @@
 
           </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
+      </div>
 
-      <mat-grid-tile colspan="4">
+      <div fxFlex="35%">
         <mat-card>
           <mat-card-header>
-            <mat-card-title>Change (7d)</mat-card-title>
+            <mat-card-title>Change, 7d</mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <mat-icon>
@@ -131,8 +131,8 @@
 
           </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+      </div>
+    </div>
 
     <div *ngIf="chart">
       <canvas id="canvas">{{ chart }}</canvas>

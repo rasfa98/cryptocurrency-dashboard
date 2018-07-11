@@ -1,9 +1,14 @@
+.wrapper {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #1d354f;
+  padding-bottom: 25px;
+}
+
 .container {
-    display: block;
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #1d354f;
+  margin-bottom: 10px;
 }
 
 .mat-card {
@@ -23,7 +28,7 @@
 }
 
 .mat-card-title {
-  font-size: 25px;
+  font-size: 24px;
 }
 
 mat-icon {
@@ -33,10 +38,19 @@ mat-icon {
 }
 
 mat-card {
-    min-width: 300px;
-    text-align: center;
+  text-align: center;
 }
 
 mat-card p {
   font-size: 20px;
+}
+
+#canvas {
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 560px) {
+  #canvas {
+    display: none !important;
+  }
 }
