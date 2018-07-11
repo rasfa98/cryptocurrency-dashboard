@@ -12,7 +12,8 @@ import { WelcomeMessageComponent } from './components/welcome-message/welcome-me
 import { CryptocurrencyService } from './services/cryptocurrency.service';
 import { CurrencyListComponent } from './components/currency-list/currency-list.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatGridListModule } from '@angular/material';
+import { MatButtonModule, MatSidenavModule, MatIconModule,
+         MatListModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -31,10 +32,9 @@ import { MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCar
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatGridListModule,
     MatCardModule,
-    MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatProgressSpinnerModule
   ],
   providers: [CryptocurrencyService],
   bootstrap: [AppComponent]

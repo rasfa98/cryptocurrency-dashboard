@@ -1,0 +1,7 @@
+.loading-wrapper {
+    position: absolute;
+    background-color: #1d354f;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+}
