@@ -8,7 +8,13 @@
   background-color: #1b2c40;
 }
 
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
+button {
+  position: fixed;
+  z-index: 5;
+  background-color: #3a7ba6 !important;
+  margin: 20px;
+}
+
+.mat-fab.mat-accent {
+  color: #fff;
 }

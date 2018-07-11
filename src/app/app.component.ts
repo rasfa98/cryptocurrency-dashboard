@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private crypto: CryptocurrencyService) { }
 
   ngOnInit() {
-    this.crypto.currencies.subscribe(currencies => if (currencies) { this.showSpinner = false; });
+    this.crypto.currencies.subscribe(currencies => { if (currencies) { this.showSpinner = false; } });
   }
 
 }
