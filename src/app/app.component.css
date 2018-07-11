@@ -5,3 +5,13 @@
     height: 100vh;
     z-index: 100;
 }
+
+.custom-color::ng-deep circle {
+    stroke: #fff;
+  }
+
+  mat-progress-spinner {
+      margin: 0 auto;
+      top: 50%;
+      margin-top: -75px;
+  }

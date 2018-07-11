@@ -134,8 +134,14 @@
       </div>
     </div>
 
-    <div *ngIf="chart">
+    <mat-progress-spinner class="custom-color" diameter="150" mode="indeterminate" *ngIf="showSpinner"></mat-progress-spinner>
+
+    <div *ngIf="chart && !error">
       <canvas id="canvas">{{ chart }}</canvas>
+    </div>
+
+    <div *ngIf="error">
+      <h2 id="error-message">Could not load any historical data...</h2>
     </div>
   </div>
 </div>

@@ -45,7 +45,15 @@ mat-card p {
   font-size: 20px;
 }
 
-#canvas {
+mat-progress-spinner {
+  margin: 0 auto;
+}
+
+.custom-color::ng-deep circle {
+  stroke: #fff;
+}
+
+#canvas, #error-message, mat-progress-spinner {
   margin-top: 50px;
 }
 

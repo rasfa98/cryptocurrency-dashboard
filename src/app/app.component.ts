@@ -7,9 +7,12 @@ import { CryptocurrencyService } from './services/cryptocurrency.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  showSpinner = true;
 
   constructor(private crypto: CryptocurrencyService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.crypto.currencies.subscribe(currencies => if (currencies) { this.showSpinner = false; });
+  }
 
 }

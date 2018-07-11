@@ -11,12 +11,19 @@ export class DetailedCurrencyComponent implements OnInit {
 
   currencyDetails: any;
   chart: any = [];
+  error = false;
+  showSpinner = true;
 
   constructor(private crypto: CryptocurrencyService) { }
 
   ngOnInit() {
     this.crypto.detailedCurrency.subscribe(currencyDetails => {
       this.currencyDetails = currencyDetails;
+      this.error = false;
+
+      if (this.chart.length === 0) {
+        this.showSpinner = true;
+      }
 
       if (this.currencyDetails) {
         this.crypto.getHistoricalData(currencyDetails.symbol).subscribe(currencyHistory => {
@@ -31,6 +38,10 @@ export class DetailedCurrencyComponent implements OnInit {
           });
 
           this.createChart(max, formatedDates);
+        }, err => {
+          this.error = true;
+          this.showSpinner = false;
+          this.chart = [];
         });
       }
     });
@@ -92,6 +103,8 @@ export class DetailedCurrencyComponent implements OnInit {
         }
       });
     }
+
+    this.showSpinner = false;
   }
 
 }

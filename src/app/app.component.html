@@ -1,5 +1,5 @@
-<div class="loading-wrapper">
-  <mat-progress-spinner diameter="150" mode="indeterminate"></mat-progress-spinner>
+<div class="loading-wrapper" *ngIf="showSpinner">
+  <mat-progress-spinner class="custom-color" diameter="150" mode="indeterminate"></mat-progress-spinner>
 </div>
 
 <app-currency-list>
