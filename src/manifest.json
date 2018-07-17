@@ -1,0 +1,39 @@
+{
+    "short_name": "CryptocurrencyDashboard",
+    "name": "Cryptocurrency Dashboard",
+    "start_url": "/demos/cryptocurrency-dashboard",
+
+    "theme_color": "#1d354f",
+    "background_color": "#1d354f",
+
+    "display": "standalone",
+    "orientation": "portrait",
+
+    "icons": [
+        {
+            "src": "/assets/icons/icon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/icon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/icon-150x150.png",
+            "sizes": "150x150",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ]
+}
