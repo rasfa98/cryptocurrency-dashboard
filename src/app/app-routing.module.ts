@@ -4,8 +4,7 @@ import { DetailedCurrencyComponent } from './components/detailed-currency/detail
 import { WelcomeMessageComponent } from './components/welcome-message/welcome-message.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
-  { path: 'welcome', component: WelcomeMessageComponent  },
+  { path: '', component: WelcomeMessageComponent },
   { path: ':id', component: DetailedCurrencyComponent }
 ];
 

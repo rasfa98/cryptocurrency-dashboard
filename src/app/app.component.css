@@ -1,17 +1,25 @@
 .loading-wrapper {
-    position: absolute;
-    background-color: #1d354f;
-    width: 100vw;
-    height: 100vh;
-    z-index: 100;
+  position: absolute;
+  background-color: #1d354f;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
 }
 
 .custom-color::ng-deep circle {
-    stroke: #fff;
-  }
+  stroke: #fff;
+}
 
-  mat-progress-spinner {
-      margin: 0 auto;
-      top: 50%;
-      margin-top: -75px;
-  }
+mat-progress-spinner {
+  margin: 0 auto;
+  top: 50%;
+  margin-top: -75px;
+}
+
+.container {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 25px;
+}

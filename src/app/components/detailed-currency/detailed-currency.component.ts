@@ -11,8 +11,8 @@ export class DetailedCurrencyComponent implements OnInit {
 
   currencyDetails: any;
   chart: any = [];
-  error = false;
-  showSpinner = true;
+  error: boolean = false;
+  showSpinner: boolean = true;
 
   constructor(private crypto: CryptocurrencyService) { }
 

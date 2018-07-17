@@ -7,7 +7,7 @@ import { CryptocurrencyService } from './services/cryptocurrency.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  showSpinner = true;
+  showSpinner: boolean = true;
 
   constructor(private crypto: CryptocurrencyService) { }
 

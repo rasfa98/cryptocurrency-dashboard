@@ -1,147 +1,145 @@
-<div class="wrapper">
-  <div *ngIf="currencyDetails">
-    <h1>{{ currencyDetails.name }}</h1>
+<div *ngIf="currencyDetails">
+  <h1>{{ currencyDetails.name }}</h1>
 
-    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
-      <div fxFlex="35%">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Rank</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-icon>bar_chart</mat-icon>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
+    <div fxFlex="35%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Rank</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-icon>bar_chart</mat-icon>
 
-            <p>{{ currencyDetails.rank || 'N/A' }}</p>
+          <p>{{ currencyDetails.rank || 'N/A' }}</p>
 
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-      <div fxFlex="35%">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Price</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-icon>euro_symbol</mat-icon>
-
-            <p>{{ currencyDetails.quotes.EUR.price | currency: 'EUR' : 'symbol' : '0.7-7' || 'N/A' }}</p>
-
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-      <div fxFlex="35%">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Market cap</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-icon>pie_chart</mat-icon>
-
-            <p>{{ currencyDetails.quotes.EUR.market_cap | currency: 'EUR' : 'symbol' : '0.0-0' || 'N/A' }}</p>
-
-          </mat-card-content>
-        </mat-card>
-      </div>
+        </mat-card-content>
+      </mat-card>
     </div>
 
-    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
-      <div fxFlex="35%">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Change, 1h</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-icon>
-              <span *ngIf="currencyDetails.quotes.EUR.percent_change_1h < 0">
-                keyboard_arrow_down
-              </span>
+    <div fxFlex="35%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Price</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-icon>euro_symbol</mat-icon>
 
-              <span *ngIf="currencyDetails.quotes.EUR.percent_change_1h > 0">
-                keyboard_arrow_up
-              </span>
+          <p>{{ currencyDetails.quotes.EUR.price | currency: 'EUR' : 'symbol' : '0.7-7' || 'N/A' }}</p>
 
-              <span *ngIf="!currencyDetails.quotes.EUR.percent_change_1h">
-                ?
-              </span>
-            </mat-icon>
-
-            <p [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_1h > 0, 'red' : currencyDetails.quotes.EUR.percent_change_1h < 0}">
-              {{ currencyDetails.quotes.EUR.percent_change_1h || 'N/A' }}
-              <span *ngIf="currencyDetails.quotes.EUR.percent_change_1h">%</span>
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-      <div fxFlex="35%">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Change, 24h</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-icon>
-              <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h < 0">
-                keyboard_arrow_down
-              </span>
-
-              <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h > 0">
-                keyboard_arrow_up
-              </span>
-
-              <span *ngIf="!currencyDetails.quotes.EUR.percent_change_24h">
-                ?
-              </span>
-            </mat-icon>
-
-            <p [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_24h > 0, 'red' : currencyDetails.quotes.EUR.percent_change_24h < 0}">
-              {{ currencyDetails.quotes.EUR.percent_change_24h || 'N/A' }}
-              <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h">%</span>
-            </p>
-
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-      <div fxFlex="35%">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Change, 7d</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-icon>
-              <span *ngIf="currencyDetails.quotes.EUR.percent_change_7d < 0">
-                keyboard_arrow_down
-              </span>
-
-              <span *ngIf="currencyDetails.quotes.EUR.percent_change_7d > 0">
-                keyboard_arrow_up
-              </span>
-
-              <span *ngIf="!currencyDetails.quotes.EUR.percent_change_7d">
-                ?
-              </span>
-            </mat-icon>
-
-            <p [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_7d > 0, 'red' : currencyDetails.quotes.EUR.percent_change_7d < 0}">
-              {{ currencyDetails.quotes.EUR.percent_change_7d || 'N/A' }}
-              <span *ngIf="currencyDetails.quotes.EUR.percent_change_7d">%</span>
-            </p>
-
-          </mat-card-content>
-        </mat-card>
-      </div>
+        </mat-card-content>
+      </mat-card>
     </div>
 
-    <mat-progress-spinner class="custom-color" diameter="150" mode="indeterminate" *ngIf="showSpinner"></mat-progress-spinner>
+    <div fxFlex="35%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Market cap</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-icon>pie_chart</mat-icon>
 
-    <div *ngIf="chart && !error">
-      <canvas id="canvas">{{ chart }}</canvas>
+          <p>{{ currencyDetails.quotes.EUR.market_cap | currency: 'EUR' : 'symbol' : '0.0-0' || 'N/A' }}</p>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
+    <div fxFlex="35%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Change, 1h</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-icon>
+            <span *ngIf="currencyDetails.quotes.EUR.percent_change_1h < 0">
+              keyboard_arrow_down
+            </span>
+
+            <span *ngIf="currencyDetails.quotes.EUR.percent_change_1h > 0">
+              keyboard_arrow_up
+            </span>
+
+            <span *ngIf="!currencyDetails.quotes.EUR.percent_change_1h">
+              ?
+            </span>
+          </mat-icon>
+
+          <p [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_1h > 0, 'red' : currencyDetails.quotes.EUR.percent_change_1h < 0}">
+            {{ currencyDetails.quotes.EUR.percent_change_1h || 'N/A' }}
+            <span *ngIf="currencyDetails.quotes.EUR.percent_change_1h">%</span>
+          </p>
+        </mat-card-content>
+      </mat-card>
     </div>
 
-    <div *ngIf="error">
-      <h2 id="error-message">Could not load any historical data...</h2>
+    <div fxFlex="35%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Change, 24h</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-icon>
+            <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h < 0">
+              keyboard_arrow_down
+            </span>
+
+            <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h > 0">
+              keyboard_arrow_up
+            </span>
+
+            <span *ngIf="!currencyDetails.quotes.EUR.percent_change_24h">
+              ?
+            </span>
+          </mat-icon>
+
+          <p [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_24h > 0, 'red' : currencyDetails.quotes.EUR.percent_change_24h < 0}">
+            {{ currencyDetails.quotes.EUR.percent_change_24h || 'N/A' }}
+            <span *ngIf="currencyDetails.quotes.EUR.percent_change_24h">%</span>
+          </p>
+
+        </mat-card-content>
+      </mat-card>
     </div>
+
+    <div fxFlex="35%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Change, 7d</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-icon>
+            <span *ngIf="currencyDetails.quotes.EUR.percent_change_7d < 0">
+              keyboard_arrow_down
+            </span>
+
+            <span *ngIf="currencyDetails.quotes.EUR.percent_change_7d > 0">
+              keyboard_arrow_up
+            </span>
+
+            <span *ngIf="!currencyDetails.quotes.EUR.percent_change_7d">
+              ?
+            </span>
+          </mat-icon>
+
+          <p [ngClass]="{'green' : currencyDetails.quotes.EUR.percent_change_7d > 0, 'red' : currencyDetails.quotes.EUR.percent_change_7d < 0}">
+            {{ currencyDetails.quotes.EUR.percent_change_7d || 'N/A' }}
+            <span *ngIf="currencyDetails.quotes.EUR.percent_change_7d">%</span>
+          </p>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <mat-progress-spinner class="custom-color" diameter="150" mode="indeterminate" *ngIf="showSpinner"></mat-progress-spinner>
+
+  <div *ngIf="chart && !error">
+    <canvas id="canvas">{{ chart }}</canvas>
+  </div>
+
+  <div *ngIf="error">
+    <h2 id="error-message">Could not load any historical data...</h2>
   </div>
 </div>
