@@ -19,17 +19,23 @@
 </head>
 
 <body>
-  <app-root></app-root>
+  <app-root>
+    <h1>~$ bootstrapping application...</h1>
+  </app-root>
 
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
-      .then(registration => {
-        console.log('Service Worker registered.')
-      })
-      .catch(err => console.log('Service Worker Error:', err))
+        .then(registration => {
+          console.log('Service Worker registered.')
+        })
+        .catch(err => console.log('Service Worker Error:', err))
     }
+
   </script>
+  <noscript>
+    <p>You need to enable JavaScript in order to use the application.</p>
+  </noscript>
 </body>
 
 </html>
