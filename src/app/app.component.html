@@ -1,4 +1,4 @@
-<div class="loading-wrapper" *ngIf="showSpinner">
+<div class="loading-wrapper" [hidden]="!showSpinner">
   <mat-progress-spinner class="custom-color" diameter="150" mode="indeterminate"></mat-progress-spinner>
 </div>
 
