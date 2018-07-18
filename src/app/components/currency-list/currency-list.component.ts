@@ -15,6 +15,7 @@ export class CurrencyListComponent implements OnInit {
   currencies: any = [];
   currencyDetails: any;
   timeout: any;
+  CACHE_KEY: string = 'currencyList';
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -24,12 +25,11 @@ export class CurrencyListComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private cryptocurrency: CryptocurrencyService, private router: Router) {}
 
   ngOnInit() {
-    this.cryptocurrency.getCurrencies().subscribe(currencies => {
-      this.cryptocurrency.updateCurrencies(currencies);
-      this.mapCurrencyData(currencies);
-      this.updateDetailedCurrency();
+    this.mapCurrencyData(JSON.parse(localStorage.getItem(this.CACHE_KEY)));
 
-      this.startAutoUpdate();
+    this.cryptocurrency.getCurrencies().subscribe(currencies => {
+      this.mapCurrencyData(currencies);
+      localStorage.setItem(this.CACHE_KEY, JSON.stringify(currencies));
     });
 
     this.router.events.subscribe(event => {
@@ -43,10 +43,15 @@ export class CurrencyListComponent implements OnInit {
   }
 
   mapCurrencyData(currencies) {
-    const objectValues = Object.values(currencies);
+    if (currencies) {
+      const objectValues = Object.values(currencies);
 
-    for (let i = 0; i < objectValues.length; i++) {
-      this.currencies.push(objectValues[i]);
+      for (let i = 0; i < objectValues.length; i++) {
+        this.currencies.push(objectValues[i]);
+      }
+
+      this.cryptocurrency.updateCurrencies(currencies);
+      this.updateDetailedCurrency();
     }
   }
 
