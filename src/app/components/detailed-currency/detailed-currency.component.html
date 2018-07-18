@@ -1,5 +1,7 @@
 <div *ngIf="currencyDetails">
-  <h1>{{ currencyDetails.name }}</h1>
+  <h1>{{ currencyDetails.name }}</h1>   
+
+  <h2>{{ currencyDetails.last_updated * 1000 | date: 'medium' }}</h2>
 
   <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
     <div fxFlex="35%">
