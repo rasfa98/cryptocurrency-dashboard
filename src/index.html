@@ -20,15 +20,21 @@
      body {
       background-color: #1d354f;
       position: relative;
+      height: 100%;
+      width: 100%;
     }
 
-    #bootstrapping {
+    #bootstrapping, #noscript {
       font-family: Arial, Helvetica, sans-serif;
       color: #fff;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+
+    #bootstrapping {
+      display: none;
     }
   </style>
 </head>
@@ -45,11 +51,13 @@
           console.log('Service Worker registered.')
         })
         .catch(err => console.log('Service Worker Error:', err))
+
+      document.querySelector('#bootstrapping').style.display = 'inline';
     }
 
   </script>
   <noscript>
-    <p>You need to enable JavaScript in order to use the application.</p>
+    <p id="noscript">You need to enable JavaScript in order to use the application.</p>
   </noscript>
 </body>
 
