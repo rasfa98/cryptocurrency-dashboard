@@ -17,31 +17,43 @@
   <meta name="theme-color" content="#1d354f">
 
   <style>
-     body {
-      background-color: #1d354f;
-      position: relative;
-      height: 100%;
-      width: 100%;
+    html,
+    body {
+      margin: 0;
+      padding: 0;
     }
 
-    #bootstrapping, #noscript {
+    body {
+      background-color: #1d354f;
+      position: relative;
+    }
+
+    #bootstrapping,
+    #noscript {
       font-family: Arial, Helvetica, sans-serif;
       color: #fff;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      font-size: 24px;
     }
 
     #bootstrapping {
       display: none;
+      left: 50%;
+      transform: translateX(-50%);
+      position: absolute;
+      width: 328.69px;
+      padding-top: 50px;
     }
+
+    #noscript {
+      margin: 10px;
+    }
+
   </style>
 </head>
 
 <body>
   <app-root>
-    <h1 id="bootstrapping">~$ bootstrapping application...</h1>
+    <h1 id="bootstrapping">~$ bootstrapping application</h1>
   </app-root>
 
   <script>
