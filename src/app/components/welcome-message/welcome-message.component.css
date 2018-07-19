@@ -1,0 +1,17 @@
+p {
+    font-size: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px;
+}
+
+a {
+    color: #3a7ba6;
+    font-size: 18px;
+}
