@@ -5,10 +5,12 @@
       <a *ngFor="let currency of currencies" [routerLink]="currency.symbol" mat-list-item>{{ currency.name }}</a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <button mat-fab type="button" aria-label="Toggle sidenav" (click)="drawer.toggle()" *ngIf="isHandset$ | async">
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
+
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

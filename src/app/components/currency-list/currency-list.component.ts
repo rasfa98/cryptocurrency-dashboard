@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CryptocurrencyService } from '../../services/cryptocurrency.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { CryptocurrencyService } from '../../services/cryptocurrency.service';
 
 @Component({
   selector: 'app-currency-list',
@@ -11,25 +12,24 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./currency-list.component.css']
 })
 export class CurrencyListComponent implements OnInit {
-
   currencies: any = [];
   currencyDetails: any;
   timeout: any;
-  CACHE_KEY: string = 'currencyList';
+  cacheKey: string = 'currencyList';
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private cryptocurrency: CryptocurrencyService, private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private crypto: CryptocurrencyService, private router: Router) {}
 
   ngOnInit() {
-    this.mapCurrencyData(JSON.parse(localStorage.getItem(this.CACHE_KEY)));
+    this.mapCurrencyData(JSON.parse(localStorage.getItem(this.cacheKey)));
 
-    this.cryptocurrency.getCurrencies().subscribe(currencies => {
+    this.crypto.getCurrencies().subscribe(currencies => {
       this.mapCurrencyData(currencies);
-      localStorage.setItem(this.CACHE_KEY, JSON.stringify(currencies));
+      localStorage.setItem(this.cacheKey, JSON.stringify(currencies));
     });
 
     this.router.events.subscribe(event => {
@@ -50,19 +50,19 @@ export class CurrencyListComponent implements OnInit {
         this.currencies.push(objectValues[i]);
       }
 
-      this.cryptocurrency.updateCurrencies(currencies);
+      this.crypto.updateCurrencies(currencies);
       this.updateDetailedCurrency();
     }
   }
 
   updateDetailedCurrency() {
     this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
-    this.cryptocurrency.updateDetailedCurrency(this.currencyDetails);
+    this.crypto.updateDetailedCurrency(this.currencyDetails);
   }
 
   startAutoUpdate() {
     this.timeout = window.setInterval(() => {
-      this.cryptocurrency.getCurrencies().subscribe(currencies => {
+      this.crypto.getCurrencies().subscribe(currencies => {
         this.currencies = [];
         this.mapCurrencyData(currencies);
         this.updateDetailedCurrency();

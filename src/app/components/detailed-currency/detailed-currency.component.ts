@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CryptocurrencyService } from '../../services/cryptocurrency.service';
 import { Chart } from 'chart.js';
 
@@ -8,7 +9,6 @@ import { Chart } from 'chart.js';
   styleUrls: ['./detailed-currency.component.css']
 })
 export class DetailedCurrencyComponent implements OnInit {
-
   currencyDetails: any;
   chart: any = [];
   error: boolean = false;

@@ -6,7 +6,7 @@ module.exports = {
   root: 'dist/',
   plugins: [
     new SWPrecacheWebpackPlugin({
-      cacheId: 'CryptocurrencyDashboard',
+      cacheId: 'CryptoDash',
       filename: 'service-worker.js',
       staticFileGlobs: [
         'dist/index.html',

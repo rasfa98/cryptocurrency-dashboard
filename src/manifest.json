@@ -1,6 +1,6 @@
 {
-    "short_name": "CryptocurrencyDashboard",
-    "name": "Cryptocurrency Dashboard",
+    "short_name": "CryptoDash",
+    "name": "CryptoDash",
     "start_url": "/",
 
     "theme_color": "#1d354f",
