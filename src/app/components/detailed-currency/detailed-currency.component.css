@@ -44,14 +44,14 @@ mat-progress-spinner {
   stroke: #fff;
 }
 
-#canvas,
+canvas,
 #error-message,
 mat-progress-spinner {
   margin-top: 50px;
 }
 
 @media screen and (max-width: 560px) {
-  #canvas {
+  canvas {
     display: none !important;
   }
 }
