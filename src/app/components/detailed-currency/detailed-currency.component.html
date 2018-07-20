@@ -35,7 +35,7 @@
     <div fxFlex="35%">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Market cap</mat-card-title>
+          <mat-card-title>Market Cap</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <mat-icon>pie_chart</mat-icon>
@@ -135,7 +135,7 @@
     </div>
   </div>
 
-  <mat-progress-spinner class="custom-color" diameter="150" mode="indeterminate" *ngIf="showSpinner"></mat-progress-spinner>
+  <mat-progress-spinner class="custom-color" diameter="150" mode="indeterminate" *ngIf="chart.length === 0 && !error"></mat-progress-spinner>
 
   <div *ngIf="chart && !error">
     <canvas id="canvas">{{ chart }}</canvas>

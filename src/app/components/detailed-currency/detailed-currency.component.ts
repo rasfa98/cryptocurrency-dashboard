@@ -12,7 +12,6 @@ export class DetailedCurrencyComponent implements OnInit {
   currencyDetails: any;
   chart: any = [];
   error: boolean = false;
-  showSpinner: boolean = true;
 
   constructor(private crypto: CryptocurrencyService) { }
 
@@ -21,33 +20,34 @@ export class DetailedCurrencyComponent implements OnInit {
       this.currencyDetails = currencyDetails;
       this.error = false;
 
-      if (this.chart.length === 0) {
-        this.showSpinner = true;
-      }
-
       if (this.currencyDetails) {
         this.crypto.getHistoricalData(currencyDetails.symbol).subscribe(currencyHistory => {
-          const max = currencyHistory.map(x => x.high);
-          const dates = currencyHistory.map(x => x.time);
+          const data = this.mapHistoricalData(currencyHistory);
 
-          const formatedDates = [];
-
-          dates.forEach(x => {
-            const date = new Date(x * 1000);
-            formatedDates.push(date);
-          });
-
-          this.createChart(max, formatedDates);
+          this.updateOrCreateChart(data.max, data.formatedDates);
         }, err => {
           this.error = true;
-          this.showSpinner = false;
           this.chart = [];
         });
       }
     });
   }
 
-  createChart(data, dates) {
+  mapHistoricalData(data) {
+    const max = data.map(x => x.high);
+    const dates = data.map(x => x.time);
+
+    const formatedDates = [];
+
+    dates.forEach(x => {
+      const date = new Date(x * 1000);
+      formatedDates.push(date);
+    });
+
+    return { max: max, formatedDates: formatedDates };
+  }
+
+  updateOrCreateChart(data, dates) {
     // Update existing chart.
     if (this.chart.length !== 0) {
       this.chart.data.labels = dates;
@@ -103,8 +103,6 @@ export class DetailedCurrencyComponent implements OnInit {
         }
       });
     }
-
-    this.showSpinner = false;
   }
 
 }

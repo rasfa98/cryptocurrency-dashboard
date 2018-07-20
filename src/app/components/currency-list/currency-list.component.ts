@@ -13,9 +13,8 @@ import { CryptocurrencyService } from '../../services/cryptocurrency.service';
 })
 export class CurrencyListComponent implements OnInit {
   currencies: any = [];
-  currencyDetails: any;
-  timeout: any;
   cacheKey: string = 'currencyList';
+  selectedCurrency: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -25,49 +24,45 @@ export class CurrencyListComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private crypto: CryptocurrencyService, private router: Router) {}
 
   ngOnInit() {
-    this.mapCurrencyData(JSON.parse(localStorage.getItem(this.cacheKey)));
+    // Use data from local storage.
+    this.updateData(JSON.parse(localStorage.getItem(this.cacheKey) || '[]'));
 
-    this.crypto.getCurrencies().subscribe(currencies => {
-      this.mapCurrencyData(currencies);
-      localStorage.setItem(this.cacheKey, JSON.stringify(currencies));
-    });
+    this.startAutoUpdate();
 
+    this.crypto.getCurrencies().subscribe(currencies => this.updateData(currencies));
+
+    // Detect when currencies are selected.
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        clearTimeout(this.timeout);
-        this.startAutoUpdate();
-
-        this.updateDetailedCurrency();
+        this.selectedCurrency = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
+        this.crypto.updateDetailedCurrency(this.selectedCurrency);
       }
     });
   }
 
   mapCurrencyData(currencies) {
-    if (currencies) {
-      const objectValues = Object.values(currencies);
+    const objectValues = Object.values(currencies);
 
-      for (let i = 0; i < objectValues.length; i++) {
-        this.currencies.push(objectValues[i]);
-      }
-
-      this.crypto.updateCurrencies(currencies);
-      this.updateDetailedCurrency();
+    for (let i = 0; i < objectValues.length; i++) {
+      this.currencies.push(objectValues[i]);
     }
   }
 
-  updateDetailedCurrency() {
-    this.currencyDetails = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
-    this.crypto.updateDetailedCurrency(this.currencyDetails);
-  }
-
   startAutoUpdate() {
-    this.timeout = window.setInterval(() => {
+    window.setInterval(() => {
       this.crypto.getCurrencies().subscribe(currencies => {
         this.currencies = [];
-        this.mapCurrencyData(currencies);
-        this.updateDetailedCurrency();
+        this.updateData(currencies);
       });
-    }, 300000);
+    }, 150000);
+  }
+
+  updateData(data) {
+    this.mapCurrencyData(data);
+    this.selectedCurrency = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
+    this.crypto.updateCurrencies(this.currencies);
+    this.crypto.updateDetailedCurrency(this.selectedCurrency);
+    localStorage.setItem(this.cacheKey, JSON.stringify(data));
   }
 
 }
