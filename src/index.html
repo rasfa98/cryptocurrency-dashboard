@@ -57,16 +57,16 @@
   </app-root>
 
   <script>
-     if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/ngsw-worker.js')
         .then(registration => {
           console.log('Service Worker registered.')
         })
         .catch(err => console.log('Service Worker Error:', err))
-      document.querySelector('#bootstrapping').style.display = 'inline';
     }
 
     document.querySelector('#bootstrapping').style.display = 'inline';
+
   </script>
   <noscript>
     <p id="noscript">You need to enable JavaScript in order to use the application.</p>
