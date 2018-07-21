@@ -9,6 +9,10 @@
         "/index.html",
         "/*.css",
         "/*.js"
+      ],
+      "urls": [
+        "https://fonts.googleapis.com/icon?family=Material+Icons",
+        "https://fonts.googleapis.com/css?family=Roboto+Condensed"
       ]
     }
   }, {
@@ -20,5 +24,31 @@
         "/assets/**"
       ]
     }
-  }]
+  }],
+  "dataGroups": [
+    {
+      "name": "currency-list",
+      "urls": [
+        "https://api.coinmarketcap.com/v2/ticker/?convert=EUR&sort=id"
+      ],
+      "cacheConfig": {
+        "maxSize": 1,
+        "maxAge": "3m",
+        "timeout": "10s",
+        "strategy": "performance"
+      }
+    },
+    {
+      "name": "historical-data",
+      "urls": [
+        "https://min-api.cryptocompare.com/data/histohour?tsym=EUR&limit=150&fsym=*"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "1h",
+        "timeout": "10s",
+        "strategy": "performance"
+      }
+    }
+  ]
 }
