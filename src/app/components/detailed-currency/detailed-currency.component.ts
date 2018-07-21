@@ -1,7 +1,6 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { CryptocurrencyService } from '../../services/cryptocurrency.service';
-import { CacheService } from '../../services/cache.service';
 
 import { Chart } from 'chart.js';
 
@@ -10,12 +9,12 @@ import { Chart } from 'chart.js';
   templateUrl: './detailed-currency.component.html',
   styleUrls: ['./detailed-currency.component.css']
 })
-export class DetailedCurrencyComponent implements OnInit, AfterViewInit {
+export class DetailedCurrencyComponent implements OnInit {
   currencyDetails: any;
   chart: any = [];
   error: boolean = false;
 
-  constructor(private crypto: CryptocurrencyService, private cache: CacheService, private change: ChangeDetectorRef) { }
+  constructor(private crypto: CryptocurrencyService) { }
 
   ngOnInit() {
     this.crypto.detailedCurrency.subscribe(currencyDetails => {
@@ -25,33 +24,13 @@ export class DetailedCurrencyComponent implements OnInit, AfterViewInit {
       if (this.currencyDetails) {
         this.crypto.getHistoricalData(currencyDetails.symbol).subscribe(currencyHistory => {
           const data = this.mapHistoricalData(currencyHistory);
-
-          this.cache.updateHistoricalData(this.currencyDetails.symbol, { max: data.max, formatedDates: data.formatedDates });
-
           this.updateOrCreateChart(data.max, data.formatedDates);
         }, err => {
           this.error = true;
           this.chart = [];
-          this.useCachedData();
         });
       }
     });
-  }
-
-  ngAfterViewInit() {
-    this.useCachedData();
-    this.change.detectChanges();
-  }
-
-  useCachedData() {
-    if (this.currencyDetails) {
-      const localData = this.cache.getHistoricalData(this.currencyDetails.symbol);
-
-      if (localData) {
-        this.updateOrCreateChart(localData.data.max, localData.data.formatedDates);
-        this.error = false;
-      }
-    }
   }
 
   mapHistoricalData(data) {

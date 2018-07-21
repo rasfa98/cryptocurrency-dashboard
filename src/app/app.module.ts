@@ -12,6 +12,9 @@ import { WelcomeMessageComponent } from './components/welcome-message/welcome-me
 import { CurrencyListComponent } from './components/currency-list/currency-list.component';
 
 import { CryptocurrencyService } from './services/cryptocurrency.service';
+import { CacheService } from './services/cache.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -25,9 +28,10 @@ import { CryptocurrencyService } from './services/cryptocurrency.service';
     AppRoutingModule,
     HttpClientModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [CryptocurrencyService],
+  providers: [CryptocurrencyService, CacheService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,8 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "pwa": "ng build --prod && sw-precache --root=dist --config=precache-config.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -23,11 +22,13 @@
     "@angular/material": "^6.3.3",
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
+    "@angular/pwa": "^0.6.8",
     "@angular/router": "^6.0.3",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "@angular/service-worker": "^6.0.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.8",
@@ -46,7 +47,6 @@
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.3.0",
-    "sw-precache-webpack-plugin": "^0.11.5",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2"

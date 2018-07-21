@@ -13,7 +13,6 @@ import { CryptocurrencyService } from '../../services/cryptocurrency.service';
 })
 export class CurrencyListComponent implements OnInit {
   currencies: any = [];
-  cacheKey: string = 'currencyList';
   selectedCurrency: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -24,9 +23,6 @@ export class CurrencyListComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private crypto: CryptocurrencyService, private router: Router) {}
 
   ngOnInit() {
-    // Use data from local storage.
-    this.updateData(JSON.parse(localStorage.getItem(this.cacheKey) || '[]'));
-
     this.startAutoUpdate();
 
     this.crypto.getCurrencies().subscribe(currencies => this.updateData(currencies));
@@ -62,7 +58,6 @@ export class CurrencyListComponent implements OnInit {
     this.selectedCurrency = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
     this.crypto.updateCurrencies(this.currencies);
     this.crypto.updateDetailedCurrency(this.selectedCurrency);
-    localStorage.setItem(this.cacheKey, JSON.stringify(data));
   }
 
 }
