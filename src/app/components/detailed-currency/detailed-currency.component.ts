@@ -60,6 +60,7 @@ export class DetailedCurrencyComponent implements OnInit {
         data: {
           labels: dates,
           datasets: [{
+            label: 'Price change',
             data: data,
             borderColor: '#3a7ba6',
             fill: true,
@@ -69,16 +70,29 @@ export class DetailedCurrencyComponent implements OnInit {
           }],
         },
         options: {
+          tooltips: {
+            displayColors: false,
+            callbacks: {
+              label: function(tooltipItem, chartData) {
+                return '€' + tooltipItem.yLabel;
+              }
+            }
+          }
           elements: {
             point: {
               radius: 0
             },
             line: {
               tension: 0
-            },
+            }
           },
           legend: {
-            display: false
+            labels: {
+              fontColor: '#fff',
+              fontSize: 24,
+              boxWidth: 0,
+              fontFamily: ['Roboto Condensed', 'sans-serif']
+            }
           },
           scales: {
             xAxes: [{
@@ -94,7 +108,10 @@ export class DetailedCurrencyComponent implements OnInit {
             }],
             yAxes: [{
               ticks: {
-                fontColor: '#fff'
+                fontColor: '#fff',
+                callback: function(value, index, values) {
+                  return '€' + value;
+                }
               }
             }]
           }
