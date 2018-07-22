@@ -34,7 +34,7 @@ button {
   background-color: #fff !important;
 }
 
-::ng-deep .cdk-keyboard-focused {
+::ng-deep .cdk-focused {
   background-color: #1d354f !important;
 }
 
