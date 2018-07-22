@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatSidenavModule, MatIconModule,
-         MatListModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
+         MatListModule, MatCardModule, MatProgressSpinnerModule, MatTabsModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -15,7 +15,8 @@ import { MatButtonModule, MatSidenavModule, MatIconModule,
     MatIconModule,
     MatListModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -25,7 +26,8 @@ import { MatButtonModule, MatSidenavModule, MatIconModule,
     MatIconModule,
     MatListModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule
   ],
   declarations: []
 })

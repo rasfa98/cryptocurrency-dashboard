@@ -6,6 +6,13 @@
 .sidenav {
   width: 200px;
   background-color: #1b2c40;
+  overflow-y: initial;
+}
+
+.mat-nav-list {
+  height: calc(100vh - 58px);
+  overflow-y: scroll;
+  margin-bottom: 10px;
 }
 
 button {
@@ -17,4 +24,23 @@ button {
 
 .mat-fab.mat-accent {
   color: #fff;
+}
+
+::ng-deep .mat-tab-header-pagination {
+  display: none !important;
+}
+
+::ng-deep .mat-ink-bar {
+  background-color: #fff !important;
+}
+
+::ng-deep .cdk-keyboard-focused {
+  background-color: #1d354f !important;
+}
+
+::ng-deep .mat-tab-label,
+::ng-deep .mat-tab-label-active {
+  min-width: 100px !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
