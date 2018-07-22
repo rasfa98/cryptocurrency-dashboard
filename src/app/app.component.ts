@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { skip } from 'rxjs/operators';
+
 import { CryptocurrencyService } from './services/cryptocurrency.service';
 
 @Component({
@@ -12,7 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private crypto: CryptocurrencyService) { }
 
   ngOnInit() {
-    this.crypto.currencies.subscribe(currencies => { if (currencies) { this.showSpinner = false; } });
+    this.crypto.currencies.pipe(skip(1)).subscribe(currencies => this.showSpinner = false);
   }
 
 }

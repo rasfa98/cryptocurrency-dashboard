@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { skip } from 'rxjs/operators';
 
 import { CryptocurrencyService } from '../../services/cryptocurrency.service';
 
@@ -17,19 +18,17 @@ export class DetailedCurrencyComponent implements OnInit {
   constructor(private crypto: CryptocurrencyService) { }
 
   ngOnInit() {
-    this.crypto.detailedCurrency.subscribe(currencyDetails => {
+    this.crypto.detailedCurrency.pipe(skip(1)).subscribe(currencyDetails => {
       this.currencyDetails = currencyDetails;
       this.error = false;
 
-      if (this.currencyDetails) {
-        this.crypto.getHistoricalData(currencyDetails.symbol).subscribe(currencyHistory => {
-          const data = this.mapHistoricalData(currencyHistory);
-          this.updateOrCreateChart(data.max, data.formatedDates);
-        }, err => {
-          this.error = true;
-          this.chart = [];
-        });
-      }
+      this.crypto.getHistoricalData(currencyDetails.symbol).subscribe(currencyHistory => {
+        const data = this.mapHistoricalData(currencyHistory);
+        this.updateOrCreateChart(data.max, data.formatedDates);
+      }, err => {
+        this.error = true;
+        this.chart = [];
+      });
     });
   }
 
@@ -77,7 +76,7 @@ export class DetailedCurrencyComponent implements OnInit {
                 return '€' + tooltipItem.yLabel;
               }
             }
-          }
+          },
           elements: {
             point: {
               radius: 0
