@@ -8,7 +8,11 @@
         </mat-nav-list>
       </mat-tab>
       <mat-tab label="Favourites">
-        <p>Fav</p>
+        <p *ngIf="favourites.length === 0">You don't have any favourites...</p>
+
+        <mat-nav-list *ngIf="favourites.length > 0">
+            <a *ngFor="let favourite of favourites" [routerLink]="favourite.symbol" mat-list-item>{{ favourite.name }}</a>
+          </mat-nav-list>
       </mat-tab>
     </mat-tab-group>
   </mat-sidenav>
@@ -16,6 +20,13 @@
   <mat-sidenav-content>
     <button mat-fab type="button" aria-label="Toggle sidenav" (click)="drawer.toggle()" *ngIf="isHandset$ | async">
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+
+    <button id="favourite" mat-fab type="button" (click)="addToFavourites()">
+      <mat-icon>
+        <span *ngIf="this.selectedCurrency.favourite">star</span>
+        <span *ngIf="!this.selectedCurrency.favourite">star_border</span>
+        </mat-icon>
     </button>
 
     <ng-content></ng-content>

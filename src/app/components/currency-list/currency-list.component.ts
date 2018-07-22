@@ -13,7 +13,8 @@ import { CryptocurrencyService } from '../../services/cryptocurrency.service';
 })
 export class CurrencyListComponent implements OnInit {
   currencies: any = [];
-  selectedCurrency: string;
+  selectedCurrency: any = {};
+  favourites: any = [];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -29,8 +30,9 @@ export class CurrencyListComponent implements OnInit {
 
     // Detect when currencies are selected.
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationEnd && this.currencies.length > 0) {
         this.selectedCurrency = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
+        this.selectedCurrency.favourite = this.favourites.filter(x => x.symbol === this.selectedCurrency.symbol).length > 0;
         this.crypto.updateDetailedCurrency(this.selectedCurrency);
       }
     });
@@ -56,8 +58,29 @@ export class CurrencyListComponent implements OnInit {
   updateData(data) {
     this.mapCurrencyData(data);
     this.selectedCurrency = this.currencies.filter(x => x.symbol === this.router.url.slice(1))[0];
+    this.selectedCurrency.favourite = this.favourites.filter(x => x.symbol === this.selectedCurrency.symbol).length > 0;
     this.crypto.updateCurrencies(this.currencies);
     this.crypto.updateDetailedCurrency(this.selectedCurrency);
+  }
+
+  addToFavourites() {
+    let isFavourite;
+    let favouriteIndex;
+
+    this.favourites.forEach((x, i) => {
+      if (x.symbol === this.selectedCurrency.symbol) {
+        isFavourite = true;
+        favouriteIndex = i;
+      }
+    });
+
+    if (isFavourite) {
+      this.favourites.splice(favouriteIndex, 1);
+      this.selectedCurrency.favourite = false;
+    } else {
+      this.favourites.push({ symbol: this.selectedCurrency.symbol, name: this.selectedCurrency.name });
+      this.selectedCurrency.favourite = true;
+    }
   }
 
 }

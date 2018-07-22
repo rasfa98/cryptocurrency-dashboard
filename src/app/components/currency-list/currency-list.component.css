@@ -15,11 +15,19 @@
   margin-bottom: 10px;
 }
 
+p {
+  padding: 0 16px;
+}
+
 button {
   position: fixed;
   z-index: 5;
   background-color: #3a7ba6 !important;
   margin: 20px;
+}
+
+#favourite {
+  right: 0;
 }
 
 .mat-fab.mat-accent {
